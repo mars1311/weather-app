@@ -1,8 +1,17 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { weatherReducer } from "@/store/weatherSlice";
-import { weatherApi } from '@/api/weatherApi';
+import { weatherApi } from "@/api/weatherApi";
 import storage from "redux-persist/lib/storage";
-import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
 
 const rootReducer = combineReducers({
   weather: weatherReducer,
@@ -12,11 +21,10 @@ const rootReducer = combineReducers({
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["weather"]
+  whitelist: ["weather"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-
 
 export const store = configureStore({
   reducer: persistedReducer,
@@ -28,7 +36,6 @@ export const store = configureStore({
       },
     }).concat(weatherApi.middleware),
 });
-
 
 export const persistor = persistStore(store);
 

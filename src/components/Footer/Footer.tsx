@@ -1,8 +1,8 @@
-import React from 'react';
-import Link from 'next/link';
-import { CloudSun } from 'lucide-react';
-import { FOOTER } from '@/constants/Footer';
-import styles from './Footer.module.scss';
+import React from "react";
+import Link from "next/link";
+import { CloudSun } from "lucide-react";
+import { FOOTER } from "@/constants/Footer";
+import styles from "./Footer.module.scss";
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -12,7 +12,11 @@ const Footer: React.FC = () => {
       <div className={styles.footer__container}>
         <div className={styles.footer__top}>
           <div className={styles.footer__brand}>
-            <CloudSun className={styles.footer__icon} size={20} aria-hidden="true" />
+            <CloudSun
+              className={styles.footer__icon}
+              size={20}
+              aria-hidden="true"
+            />
             <span className={styles.footer__name}>{FOOTER.NAME}</span>
           </div>
           <div className={styles.footer__status}>

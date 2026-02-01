@@ -12,14 +12,14 @@ const HomePage: React.FC = () => {
   const cities = useAppSelector((state) => state.weather.cities);
   const [fetchWeather] = useLazyFetchWeatherByCityQuery();
 
-    const handleUpdate = async (cityName: string) => {
-      try {
-        const data = await fetchWeather(cityName).unwrap();
-        dispatch(updateCity({ data }));
-      } catch (err) {
-        console.error(`Failed to refresh ${cityName}:`, err);
-      }
-    };
+  const handleUpdate = async (cityName: string) => {
+    try {
+      const data = await fetchWeather(cityName).unwrap();
+      dispatch(updateCity({ data }));
+    } catch (err) {
+      console.error(`Failed to refresh ${cityName}:`, err);
+    }
+  };
 
   useEffect(() => {
     cities.forEach((city) => handleUpdate(city.name));

@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { Loader2 } from 'lucide-react';
-import styles from './Loader.module.scss';
+import React from "react";
+import { Loader2 } from "lucide-react";
+import styles from "./Loader.module.scss";
 
 const Loader: React.FC = () => {
   return (
@@ -11,6 +11,5 @@ const Loader: React.FC = () => {
     </div>
   );
 };
-
 
 export default Loader;

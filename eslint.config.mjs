@@ -8,7 +8,7 @@ export default defineConfig([
       "out/**",
       "build/**",
       "next-env.d.ts",
-      "node_modules/**"
+      "node_modules/**",
     ],
   },
   ...nextConfig,

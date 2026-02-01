@@ -20,13 +20,13 @@
     display: flex;
     flex-direction: column;
   }
-  
+
   &__logo {
     display: flex;
     align-items: center;
     gap: 12px;
   }
-  
+
   &__icon {
     color: $accentBlue;
   }

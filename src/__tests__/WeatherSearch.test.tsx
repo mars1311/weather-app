@@ -36,7 +36,9 @@ describe("WeatherSearch", () => {
     render(<WeatherSearch />);
 
     expect(screen.getByPlaceholderText(/enter city name/i)).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /submit form/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /submit form/i }),
+    ).toBeInTheDocument();
   });
 
   test("shows validation error", async () => {
@@ -77,9 +79,7 @@ describe("WeatherSearch", () => {
   });
 
   test("shows error if city already exists", async () => {
-    (useAppSelector as jest.Mock).mockReturnValue([
-      { id: 1, name: "Kyiv" },
-    ]);
+    (useAppSelector as jest.Mock).mockReturnValue([{ id: 1, name: "Kyiv" }]);
     (validateInput as jest.Mock).mockReturnValue(null);
 
     render(<WeatherSearch />);
@@ -91,7 +91,7 @@ describe("WeatherSearch", () => {
     fireEvent.click(screen.getByRole("button", { name: /submit form/i }));
 
     expect(
-      await screen.findByText(WEATHER_ERROR.ALREADY_ADDED)
+      await screen.findByText(WEATHER_ERROR.ALREADY_ADDED),
     ).toBeInTheDocument();
   });
 });

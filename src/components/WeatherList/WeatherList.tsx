@@ -11,8 +11,14 @@ type WeatherListProps = {
   onDelete: (id: number) => void;
 };
 
-const WeatherList: React.FC<WeatherListProps> = ({ cities, onRefresh, onDelete }) => {
-  const highlightedCityId = useAppSelector((state) => state.weather.highlightedCityId);
+const WeatherList: React.FC<WeatherListProps> = ({
+  cities,
+  onRefresh,
+  onDelete,
+}) => {
+  const highlightedCityId = useAppSelector(
+    (state) => state.weather.highlightedCityId,
+  );
 
   if (!cities || cities.length === 0) {
     return <Empty />;
@@ -32,7 +38,7 @@ const WeatherList: React.FC<WeatherListProps> = ({ cities, onRefresh, onDelete }
               isHighlighted={cityItem.id === highlightedCityId}
               onRefresh={onRefresh}
               onDelete={onDelete}
-          />
+            />
           </li>
         ))}
       </ul>

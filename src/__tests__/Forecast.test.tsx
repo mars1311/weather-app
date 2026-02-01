@@ -18,7 +18,9 @@ jest.mock("@/api/weatherApi", () => ({
 }));
 
 jest.mock("recharts", () => ({
-  ResponsiveContainer: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+  ResponsiveContainer: ({ children }: { children: React.ReactNode }) => (
+    <div>{children}</div>
+  ),
   LineChart: () => <div data-testid="line-chart" />,
   Line: () => null,
   XAxis: () => null,
@@ -32,7 +34,7 @@ jest.mock("lucide-react", () => ({
 
 describe("ForecastPage", () => {
   const mockFetchForecast = jest.fn();
-  
+
   const mockCity = {
     id: 1,
     name: "Kyiv",
@@ -53,34 +55,38 @@ describe("ForecastPage", () => {
     (useParams as jest.Mock).mockReturnValue({ id: "1" });
     (useLazyGetForecastQuery as jest.Mock).mockReturnValue([
       mockFetchForecast,
-      { data: null, isLoading: false }
+      { data: null, isLoading: false },
     ]);
   });
 
   test("should display 'city not found' message when city is missing in store", () => {
     (useAppSelector as jest.Mock).mockReturnValue(undefined);
-    
+
     render(<ForecastPage />);
-    
+
     expect(screen.getByText(FORECAST.CITY_NOT_FOUND)).toBeInTheDocument();
   });
 
   test("should render city details and trigger API call on mount", () => {
     (useAppSelector as jest.Mock).mockReturnValue(mockCity);
-    
+
     render(<ForecastPage />);
 
     expect(screen.getByText(/Kyiv, UA/i)).toBeInTheDocument();
-    
-    expect(screen.getByText(new RegExp(`${mockCity.temp}`, "i"))).toBeInTheDocument();
-    expect(screen.getByText(new RegExp(`${mockCity.humidity}`, "i"))).toBeInTheDocument();
-    
+
+    expect(
+      screen.getByText(new RegExp(`${mockCity.temp}`, "i")),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(new RegExp(`${mockCity.humidity}`, "i")),
+    ).toBeInTheDocument();
+
     expect(mockFetchForecast).toHaveBeenCalledWith({ lat: 50.45, lon: 30.52 });
   });
 
   test("should render the chart when forecast data is available", () => {
     (useAppSelector as jest.Mock).mockReturnValue(mockCity);
-    
+
     const mockForecastData = [
       { dt_txt: "2026-02-01 12:00:00", main: { temp: 21 } },
       { dt_txt: "2026-02-01 15:00:00", main: { temp: 19 } },
@@ -88,7 +94,7 @@ describe("ForecastPage", () => {
 
     (useLazyGetForecastQuery as jest.Mock).mockReturnValue([
       mockFetchForecast,
-      { data: mockForecastData, isLoading: false }
+      { data: mockForecastData, isLoading: false },
     ]);
 
     render(<ForecastPage />);
@@ -100,7 +106,7 @@ describe("ForecastPage", () => {
     (useAppSelector as jest.Mock).mockReturnValue(mockCity);
     (useLazyGetForecastQuery as jest.Mock).mockReturnValue([
       mockFetchForecast,
-      { data: null, isLoading: false }
+      { data: null, isLoading: false },
     ]);
 
     render(<ForecastPage />);

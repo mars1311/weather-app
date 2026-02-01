@@ -1,7 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import WeatherCard from "@/components/WeatherCard/WeatherCard";
 
-
 jest.mock("next/navigation", () => ({
   useRouter: () => ({ push: jest.fn() }),
   useParams: () => ({ id: "1" }),
@@ -70,7 +69,6 @@ describe("WeatherCard", () => {
   test("clicking buttons does not trigger navigation", () => {
     render(<WeatherCard {...props} />);
 
-    const card = screen.getByRole("link");
     const refreshBtn = screen.getByRole("button", { name: /refresh city/i });
     const removeBtn = screen.getByRole("button", { name: /remove city/i });
 

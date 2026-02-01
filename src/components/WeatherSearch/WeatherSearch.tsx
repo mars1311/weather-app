@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import { useState, useRef } from 'react';
-import { useAppDispatch, useAppSelector } from '@/hooks/useApp';
-import { useLazyFetchWeatherByCityQuery } from '@/api/weatherApi';
-import { addCity, setHighlightedCity } from '@/store/weatherSlice';
-import { validateInput } from '@/utils/validateInput';
-import { WEATHER_ERROR } from '@/constants/WeatherError';
-import styles from './WeatherSearch.module.scss';
+import { useState, useRef } from "react";
+import { useAppDispatch, useAppSelector } from "@/hooks/useApp";
+import { useLazyFetchWeatherByCityQuery } from "@/api/weatherApi";
+import { addCity, setHighlightedCity } from "@/store/weatherSlice";
+import { validateInput } from "@/utils/validateInput";
+import { WEATHER_ERROR } from "@/constants/WeatherError";
+import styles from "./WeatherSearch.module.scss";
 
 const WeatherSearch: React.FC = () => {
   const dispatch = useAppDispatch();
 
-  const cities = useAppSelector(state => state.weather.cities);
+  const cities = useAppSelector((state) => state.weather.cities);
 
-  const [cityValue, setCityValue] = useState<string>('');
+  const [cityValue, setCityValue] = useState<string>("");
   const [localError, setLocalError] = useState<string | null>(null);
 
   const [fetchWeather, { isLoading }] = useLazyFetchWeatherByCityQuery();
@@ -39,7 +39,9 @@ const WeatherSearch: React.FC = () => {
       return;
     }
 
-    const existingCity = cities.find(c => c.name.toLowerCase() === cityValue.toLowerCase());
+    const existingCity = cities.find(
+      (c) => c.name.toLowerCase() === cityValue.toLowerCase(),
+    );
     if (existingCity) {
       setLocalError(WEATHER_ERROR.ALREADY_ADDED);
       highlightCity(existingCity.id);
@@ -54,9 +56,9 @@ const WeatherSearch: React.FC = () => {
         return;
       }
       dispatch(addCity({ data }));
-      setCityValue('');
+      setCityValue("");
     } catch (err: any) {
-      if ('status' in err && err.status === 404) {
+      if ("status" in err && err.status === 404) {
         setLocalError(WEATHER_ERROR.CITY_NOT_FOUND);
       } else {
         setLocalError(WEATHER_ERROR.UNKNOWN_ERROR);
@@ -83,15 +85,11 @@ const WeatherSearch: React.FC = () => {
           className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition cursor-pointer disabled:opacity-50"
           aria-label="Submit form"
         >
-          {isLoading ? 'Loading...' : 'Search'}
+          {isLoading ? "Loading..." : "Search"}
         </button>
       </form>
 
-      {localError && (
-        <p className="text-red-500 mt-2">
-          {localError}
-        </p>
-      )}
+      {localError && <p className="text-red-500 mt-2">{localError}</p>}
     </div>
   );
 };

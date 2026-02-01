@@ -1,22 +1,24 @@
-@import "@/styles/_variables"; 
+@import "@/styles/_variables";
 
 .weatherCard {
   border-radius: 12px;
   padding: 16px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
   transition: all 300ms ease-in-out;
   background-color: $white;
   border: 1px solid $lightgrey;
   color: $grey;
   cursor: pointer;
-  
+
   &:hover {
     background-color: $tenderGrey;
   }
 
   &__top {
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
     align-items: center;
 
     h3 {
@@ -45,12 +47,13 @@
   &_isHighlighted {
     border-color: $accentBlue;
     background-color: $lightBlue;
-    animation: softBounce 3s infinite ease-in-out; 
+    animation: softBounce 3s infinite ease-in-out;
   }
 }
 
 @keyframes softBounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -72,14 +75,14 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 6px; 
+  padding: 6px;
   font-size: 12px;
-  color: $darkGrey; 
-  
+  color: $darkGrey;
+
   background-color: $white;
   border: 1px solid $lightgrey;
   border-radius: 8px;
-  
+
   cursor: pointer;
   transition: all 0.2s ease;
 

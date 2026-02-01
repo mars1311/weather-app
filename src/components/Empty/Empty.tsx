@@ -1,8 +1,8 @@
-import React from 'react';
-import { CloudMoon } from 'lucide-react';
-import { EMPTY } from '@/constants/Empty';
+import React from "react";
+import { CloudMoon } from "lucide-react";
+import { EMPTY } from "@/constants/Empty";
 
-import styles from './Empty.module.scss';
+import styles from "./Empty.module.scss";
 
 const Empty: React.FC = () => {
   return (

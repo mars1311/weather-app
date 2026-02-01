@@ -1,10 +1,10 @@
 "use client";
-import { useMemo, memo } from 'react';
+import { useMemo, memo } from "react";
 import { useRouter } from "next/navigation";
 import { RefreshCw } from "lucide-react";
 import type { MouseEvent } from "react";
 import { WEATHER_CARD } from "@/constants/WeatherCard";
-import { formatTime } from '@/utils/formatTime';
+import { formatTime } from "@/utils/formatTime";
 import styles from "./WeatherCard.module.scss";
 
 type WeatherCardProps = {
@@ -44,8 +44,8 @@ const WeatherCard = ({
     router.push(`/weather/${id}`);
   };
 
-const formattedTime = useMemo(() => {
-    return formatTime(updatedAt)
+  const formattedTime = useMemo(() => {
+    return formatTime(updatedAt);
   }, [updatedAt]);
   return (
     <div
@@ -57,7 +57,7 @@ const formattedTime = useMemo(() => {
           handleNavigate();
         }
       }}
-      className={`${styles.weatherCard} ${isHighlighted ? styles.weatherCard_isHighlighted : ''}`}
+      className={`${styles.weatherCard} ${isHighlighted ? styles.weatherCard_isHighlighted : ""}`}
     >
       <div className={styles.weatherCard__top}>
         <h3>{city}</h3>
@@ -73,7 +73,7 @@ const formattedTime = useMemo(() => {
           onClick={handleOnRefresh}
           aria-label="Refresh city"
         >
-          <RefreshCw  size={16} />
+          <RefreshCw size={16} />
           <span>{WEATHER_CARD.REFRESH}</span>
         </button>
 

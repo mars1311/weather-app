@@ -1,4 +1,4 @@
-import NotFoundUI from '@/ui/NotFoundUI/NotFound';
+import NotFoundUI from "@/ui/NotFoundUI/NotFound";
 
 const NotFound = () => <NotFoundUI />;
 

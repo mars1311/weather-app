@@ -1,7 +1,7 @@
 import React from "react";
-import { CloudSun } from 'lucide-react';
+import { CloudSun } from "lucide-react";
 import { HEADER } from "@/constants/Header";
-import styles from './Header.module.scss';
+import styles from "./Header.module.scss";
 
 const Header: React.FC = () => {
   return (
@@ -13,7 +13,7 @@ const Header: React.FC = () => {
             size={32}
             aria-hidden="true"
           />
-           <div className={styles.header__content}>
+          <div className={styles.header__content}>
             <h1 className={styles.header__title}>{HEADER.TITLE}</h1>
             <span className={styles.header__text}>{HEADER.TEXT}</span>
           </div>

@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import { CloudOff } from 'lucide-react';
-import { NOT_FOUND } from '@/constants/NotFound';
-import styles from './NotFound.module.scss';
+import Link from "next/link";
+import { CloudOff } from "lucide-react";
+import { NOT_FOUND } from "@/constants/NotFound";
+import styles from "./NotFound.module.scss";
 
 export default function NotFoundUI() {
   return (

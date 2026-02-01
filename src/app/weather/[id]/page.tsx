@@ -1,12 +1,12 @@
 "use client";
 import Image from "next/image";
-import Link from 'next/link';
+import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { useParams } from "next/navigation";
 import { useAppSelector } from "@/hooks/useApp";
 import { useLazyGetForecastQuery } from "@/api/weatherApi";
-import { FORECAST  } from "@/constants/Forecast";
-import styles from './Forecast.module.scss';
+import { FORECAST } from "@/constants/Forecast";
+import styles from "./Forecast.module.scss";
 
 import { useEffect } from "react";
 import {
@@ -15,12 +15,14 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  ResponsiveContainer
+  ResponsiveContainer,
 } from "recharts";
 
 export default function ForecastPage() {
   const { id } = useParams();
-  const city = useAppSelector((state) => state.weather.cities.find((c) => c.id === Number(id)));
+  const city = useAppSelector((state) =>
+    state.weather.cities.find((c) => c.id === Number(id)),
+  );
 
   const [fetchForecast, { data: forecast }] = useLazyGetForecastQuery();
 
@@ -29,16 +31,18 @@ export default function ForecastPage() {
     fetchForecast({ lat: city.lat, lon: city.lon });
   }, [city, fetchForecast]);
 
-  const nextHours = forecast ? forecast.slice(0, 8).map(item => ({
-    time: item.dt_txt,
-    temp: Math.round(item.main.temp)
-  })) : [];
+  const nextHours = forecast
+    ? forecast.slice(0, 8).map((item) => ({
+        time: item.dt_txt,
+        temp: Math.round(item.main.temp),
+      }))
+    : [];
 
   if (!city) return <div>{FORECAST.CITY_NOT_FOUND}</div>;
 
   const iconBaseUrl = process.env.NEXT_PUBLIC_WEATHER_ICON_URL;
   const iconUrl = `${iconBaseUrl}${city.icon}@2x.png`;
-  
+
   return (
     <main className={styles.forecast}>
       <Link href="/" className={styles.forecast__link}>
@@ -47,12 +51,7 @@ export default function ForecastPage() {
       </Link>
       <section className={styles.forecast__content}>
         <div className={styles.forecast__content__header}>
-          <Image
-            src={iconUrl}
-            alt={city.condition}
-            width={40}
-            height={40}
-          />
+          <Image src={iconUrl} alt={city.condition} width={40} height={40} />
           <h1>
             <span>
               {city.name}, {city.country}
@@ -69,17 +68,23 @@ export default function ForecastPage() {
 
             <div className={styles.forecast__item}>
               <span className={styles.forecast__label}>{FORECAST.FEELS}</span>
-              <span className={styles.forecast__value}>{city.feels_like}°C</span>
+              <span className={styles.forecast__value}>
+                {city.feels_like}°C
+              </span>
             </div>
 
             <div className={styles.forecast__item}>
               <span className={styles.forecast__label}>{FORECAST.WIND}</span>
-              <span className={styles.forecast__value}>{city.windSpeed} m/s</span>
+              <span className={styles.forecast__value}>
+                {city.windSpeed} m/s
+              </span>
             </div>
           </div>
           <div className={styles.forecast__details}>
             <div className={styles.forecast__item}>
-              <span className={styles.forecast__label}>{FORECAST.HUMIDITY}</span>
+              <span className={styles.forecast__label}>
+                {FORECAST.HUMIDITY}
+              </span>
               <span className={styles.forecast__value}>{city.humidity}%</span>
             </div>
             <div className={styles.forecast__item}>

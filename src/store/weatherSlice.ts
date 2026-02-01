@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { type WeatherType } from '@/types/Weather';
+import { type WeatherType } from "@/types/Weather";
 interface WeatherState {
   cities: WeatherType[];
   selectedCityId: number | null;
@@ -22,14 +22,14 @@ const weatherSlice = createSlice({
   reducers: {
     addCity: (state, action: PayloadAction<{ data: WeatherType }>) => {
       const { data } = action.payload;
-      
-      if (!state.cities.find(c => c.id === data.id)) {
-          state.cities.unshift(data);
+
+      if (!state.cities.find((c) => c.id === data.id)) {
+        state.cities.unshift(data);
       }
     },
     updateCity: (state, action: PayloadAction<{ data: WeatherType }>) => {
       const { data } = action.payload;
-      const index = state.cities.findIndex(c => c.id === data.id);
+      const index = state.cities.findIndex((c) => c.id === data.id);
       if (index !== -1) state.cities[index] = data;
     },
     removeCity: (state, action: PayloadAction<number>) => {
@@ -44,6 +44,12 @@ const weatherSlice = createSlice({
   },
 });
 
-export const { addCity, updateCity, removeCity, setStatus, setHighlightedCity } = weatherSlice.actions;
+export const {
+  addCity,
+  updateCity,
+  removeCity,
+  setStatus,
+  setHighlightedCity,
+} = weatherSlice.actions;
 
 export const weatherReducer = weatherSlice.reducer;

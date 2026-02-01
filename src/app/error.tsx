@@ -1,7 +1,7 @@
 "use client";
 
 import { AlertCircle } from "lucide-react";
-import { ERROR } from '@/constants/Error';
+import { ERROR } from "@/constants/Error";
 
 type ErrorProps = {
   error: Error & { digest?: string };
