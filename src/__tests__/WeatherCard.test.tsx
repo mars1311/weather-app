@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import WeatherCard from "@/components/WeatherCard/WeatherCard";
+import WeatherCard from '@/components/WeatherCard/WeatherCard';
 
 jest.mock("next/navigation", () => ({
   useRouter: () => ({ push: jest.fn() }),

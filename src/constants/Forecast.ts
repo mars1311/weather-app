@@ -1,5 +1,4 @@
 export const FORECAST = {
-  CITY_NOT_FOUND: "City not found",
   BACK: "Back",
   TEMP: "Temperature:",
   FEELS: "Feels like:",
