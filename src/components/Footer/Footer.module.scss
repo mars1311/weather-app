@@ -1,0 +1,83 @@
+@import "@/styles/_variables"; 
+
+.footer {
+  width: 100%;
+  background: $primaryBlue;
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 32px 0 16px 0;
+  color: $white;
+
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  &__brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 19px;
+  }
+
+  &__icon {
+    color: $white;
+  }
+  
+  &__status {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  &__pulse {
+    width: 8px;
+    height: 8px;
+    background: $green;
+    border-radius: 50%;
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 14px;
+    color: $white;
+
+    p {
+      margin: 0;
+      opacity: 0.8;
+    }
+  }
+
+  &__legal {
+    display: flex;
+    gap: 16px;
+
+    a {
+      color: $white;
+      text-decoration: none;
+      opacity: 0.6;
+      transition: opacity 0.2s ease;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}

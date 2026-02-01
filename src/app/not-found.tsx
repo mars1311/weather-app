@@ -1,8 +1,5 @@
-export default function NotFound() {
-  return (
-    <div>
-      <h1>404</h1>
-      <p>Page not found</p>
-    </div>
-  );
-}
+import NotFoundUI from '@/ui/NotFoundUI/NotFound';
+
+const NotFound = () => <NotFoundUI />;
+
+export default NotFound;

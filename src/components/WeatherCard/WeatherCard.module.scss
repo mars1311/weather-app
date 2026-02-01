@@ -1,0 +1,114 @@
+@import "@/styles/_variables"; 
+
+.weatherCard {
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: all 300ms ease-in-out;
+  background-color: $white;
+  border: 1px solid $lightgrey;
+  color: $grey;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: $tenderGrey;
+  }
+
+  &__top {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    span {
+      font-size: 12px;
+    }
+  }
+
+  &__main {
+    margin-top: 8px;
+  }
+
+  &__temp {
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  &__desc {
+    font-size: 16px;
+  }
+
+  &_isHighlighted {
+    border-color: $accentBlue;
+    background-color: $lightBlue;
+    animation: softBounce 3s infinite ease-in-out; 
+  }
+}
+
+@keyframes softBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.weatherCard__buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.weatherCard__refreshBtn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 6px; 
+  font-size: 12px;
+  color: $darkGrey; 
+  
+  background-color: $white;
+  border: 1px solid $lightgrey;
+  border-radius: 8px;
+  
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background-color: $lightgrey;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.weatherCard__removeBtn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background-color: $white;
+  border: 1px solid $primaryRed;
+  border-radius: 8px;
+  color: $primaryRed;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 77, 77, 0.1);
+    border-color: $primaryRed;
+  }
+}

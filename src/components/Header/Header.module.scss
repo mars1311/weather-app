@@ -1,0 +1,43 @@
+@import "@/styles/_variables";
+
+.header {
+  width: 100%;
+  background: $primaryBlue;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid $white;
+  padding: 16px 0;
+  color: $white;
+
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  &__icon {
+    color: $accentBlue;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  &__title,
+  &__text {
+    color: $lightBlue;
+  }
+}
