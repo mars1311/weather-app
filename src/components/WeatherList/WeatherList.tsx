@@ -2,7 +2,7 @@
 
 import { WeatherType } from "@/types/Weather";
 import WeatherCard from "@/components/WeatherCard/WeatherCard";
-import Empty from "../Empty/Empty";
+import Empty from "@/components/Empty/Empty";
 import { useAppSelector } from "@/hooks/useApp";
 
 type WeatherListProps = {

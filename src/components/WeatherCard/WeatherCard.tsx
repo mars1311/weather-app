@@ -1,9 +1,11 @@
-'use client';
-import React, { useMemo, memo } from 'react';
-import { RefreshCw } from 'lucide-react';
-import { WEATHER_CARD } from '@/constants/WeatherCard';
+"use client";
+import { useMemo, memo } from 'react';
+import { useRouter } from "next/navigation";
+import { RefreshCw } from "lucide-react";
+import type { MouseEvent } from "react";
+import { WEATHER_CARD } from "@/constants/WeatherCard";
 import { formatTime } from '@/utils/formatTime';
-import styles from './WeatherCard.module.scss';
+import styles from "./WeatherCard.module.scss";
 
 type WeatherCardProps = {
   id: number;
@@ -16,7 +18,7 @@ type WeatherCardProps = {
   onDelete: (id: number) => void;
 };
 
-const WeatherCard: React.FC<WeatherCardProps> = ({
+const WeatherCard = ({
   id,
   city,
   temperature,
@@ -25,13 +27,38 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
   isHighlighted,
   onRefresh,
   onDelete,
-}) => {
+}: WeatherCardProps) => {
+  const router = useRouter();
+
+  const handleOnDelete = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    onDelete(id);
+  };
+
+  const handleOnRefresh = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    onRefresh(id);
+  };
+
+  const handleNavigate = () => {
+    router.push(`/weather/${id}`);
+  };
 
 const formattedTime = useMemo(() => {
     return formatTime(updatedAt)
   }, [updatedAt]);
   return (
-    <div className={`${styles.weatherCard} ${isHighlighted ? styles.weatherCard_isHighlighted : ''}`}>
+    <div
+      role="link"
+      tabIndex={0}
+      onClick={handleNavigate}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          handleNavigate();
+        }
+      }}
+      className={`${styles.weatherCard} ${isHighlighted ? styles.weatherCard_isHighlighted : ''}`}
+    >
       <div className={styles.weatherCard__top}>
         <h3>{city}</h3>
         <span> {formattedTime} </span>
@@ -43,15 +70,16 @@ const formattedTime = useMemo(() => {
       <div className={styles.weatherCard__buttons}>
         <button
           className={styles.weatherCard__refreshBtn}
-          onClick={() => onRefresh(id)}
+          onClick={handleOnRefresh}
           aria-label="Refresh city"
         >
           <RefreshCw  size={16} />
           <span>{WEATHER_CARD.REFRESH}</span>
         </button>
+
         <button
           className={styles.weatherCard__removeBtn}
-          onClick={() => onDelete(id)}
+          onClick={handleOnDelete}
           aria-label="Remove city"
         >
           ✕

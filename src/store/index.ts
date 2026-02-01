@@ -1,4 +1,3 @@
-// src/store/store.ts
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { weatherReducer } from "@/store/weatherSlice";
 import { weatherApi } from '@/api/weatherApi';
@@ -6,8 +5,8 @@ import storage from "redux-persist/lib/storage";
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
 
 const rootReducer = combineReducers({
-  weather: weatherReducer,               // твій persisted slice
-  [weatherApi.reducerPath]: weatherApi.reducer,  // RTK Query reducer
+  weather: weatherReducer,
+  [weatherApi.reducerPath]: weatherApi.reducer,
 });
 
 const persistConfig = {
