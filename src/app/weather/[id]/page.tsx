@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import { useAppSelector } from "@/hooks/useApp";
 import { useLazyGetForecastQuery } from "@/api/weatherApi";
 import { FORECAST } from "@/constants/Forecast";
+import NotFoundUI from "@/ui/NotFoundUI/NotFound";
 import styles from "./Forecast.module.scss";
 
 import { useEffect } from "react";
@@ -38,7 +39,7 @@ export default function ForecastPage() {
       }))
     : [];
 
-  if (!city) return <div>{FORECAST.CITY_NOT_FOUND}</div>;
+  if (!city) return <div><NotFoundUI /></div>;
 
   const iconBaseUrl = process.env.NEXT_PUBLIC_WEATHER_ICON_URL;
   const iconUrl = `${iconBaseUrl}${city.icon}@2x.png`;

@@ -1,7 +1,6 @@
 export type WeatherAppState = {
   cities: WeatherType[];
   forecast: [];
-  status: "idle" | "loading" | "error";
   globalError?: string;
   uiError?: string;
 };

@@ -4,7 +4,6 @@ interface WeatherState {
   cities: WeatherType[];
   selectedCityId: number | null;
   highlightedCityId: number | null;
-  status: "idle" | "loading" | "error";
   error: string | null;
 }
 
@@ -12,7 +11,6 @@ const initialState: WeatherState = {
   cities: [],
   selectedCityId: null,
   highlightedCityId: null,
-  status: "idle",
   error: null,
 };
 
@@ -35,9 +33,6 @@ const weatherSlice = createSlice({
     removeCity: (state, action: PayloadAction<number>) => {
       state.cities = state.cities.filter((c) => c.id !== action.payload);
     },
-    setStatus: (state, action: PayloadAction<WeatherState["status"]>) => {
-      state.status = action.payload;
-    },
     setHighlightedCity: (state, action: PayloadAction<number | null>) => {
       state.highlightedCityId = action.payload;
     },
@@ -48,7 +43,6 @@ export const {
   addCity,
   updateCity,
   removeCity,
-  setStatus,
   setHighlightedCity,
 } = weatherSlice.actions;
 
