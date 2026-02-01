@@ -18,13 +18,11 @@ import {
   ResponsiveContainer
 } from "recharts";
 
-export default function WeatherDetailPage() {
+export default function ForecastPage() {
   const { id } = useParams();
   const city = useAppSelector((state) => state.weather.cities.find((c) => c.id === Number(id)));
 
   const [fetchForecast, { data: forecast }] = useLazyGetForecastQuery();
-
-  console.log('forecast', city);
 
   useEffect(() => {
     if (!city) return;
