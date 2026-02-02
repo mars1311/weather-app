@@ -24,7 +24,7 @@ export default defineConfig([
           ignoreRestSiblings: true,
         },
       ],
-      "no-unused-vars": "off", // turn off the base rule
+      "no-unused-vars": "off",
     },
   },
 ]);

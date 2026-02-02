@@ -68,9 +68,13 @@ const WeatherSearch: React.FC = () => {
 
   return (
     <div className={styles.weatherSearch}>
-      <form onSubmit={handleSubmit} className="flex items-center space-x-2">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-wrap items-start justify-center space-x-2"
+      >
         <input
           type="text"
+          name="weather search"
           placeholder="Enter city name"
           value={cityValue}
           onChange={(e) => {
@@ -78,7 +82,7 @@ const WeatherSearch: React.FC = () => {
             setCityValue(value);
             setLocalError(validateOnChange(value));
           }}
-          className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder-gray-400"
+          className={styles.weatherSearch__input}
         />
         <button
           type="submit"

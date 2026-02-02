@@ -39,7 +39,12 @@ export default function ForecastPage() {
       }))
     : [];
 
-  if (!city) return <div><NotFoundUI /></div>;
+  if (!city)
+    return (
+      <div>
+        <NotFoundUI />
+      </div>
+    );
 
   const iconBaseUrl = process.env.NEXT_PUBLIC_WEATHER_ICON_URL;
   const iconUrl = `${iconBaseUrl}${city.icon}@2x.png`;

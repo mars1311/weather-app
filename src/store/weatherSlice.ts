@@ -39,11 +39,7 @@ const weatherSlice = createSlice({
   },
 });
 
-export const {
-  addCity,
-  updateCity,
-  removeCity,
-  setHighlightedCity,
-} = weatherSlice.actions;
+export const { addCity, updateCity, removeCity, setHighlightedCity } =
+  weatherSlice.actions;
 
 export const weatherReducer = weatherSlice.reducer;

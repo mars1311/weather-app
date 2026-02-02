@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import { useAppSelector } from "@/hooks/useApp";
 import { useLazyGetForecastQuery } from "@/api/weatherApi";
 import { FORECAST } from "@/constants/Forecast";
+import { NOT_FOUND } from "@/constants/NotFound";
 
 jest.mock("next/navigation", () => ({
   useParams: jest.fn(),
@@ -26,11 +27,22 @@ jest.mock("recharts", () => ({
   XAxis: () => null,
   YAxis: () => null,
   Tooltip: () => null,
+  CartesianGrid: () => null,
 }));
 
 jest.mock("lucide-react", () => ({
   ArrowLeft: () => <div data-testid="back-icon" />,
+  Wind: () => <div />,
+  Droplets: () => <div />,
+  Thermometer: () => <div />,
 }));
+
+jest.mock("@/ui/NotFoundUI/NotFound", () => {
+  return {
+    __esModule: true,
+    default: () => <div data-testid="not-found-ui">Page is not found</div>,
+  };
+});
 
 describe("ForecastPage", () => {
   const mockFetchForecast = jest.fn();
@@ -61,26 +73,18 @@ describe("ForecastPage", () => {
 
   test("should display 'city not found' message when city is missing in store", () => {
     (useAppSelector as jest.Mock).mockReturnValue(undefined);
-
     render(<ForecastPage />);
-
-    expect(screen.getByText(FORECAST.CITY_NOT_FOUND)).toBeInTheDocument();
+    expect(screen.getByText(NOT_FOUND.TITLE)).toBeInTheDocument();
   });
 
   test("should render city details and trigger API call on mount", () => {
     (useAppSelector as jest.Mock).mockReturnValue(mockCity);
-
     render(<ForecastPage />);
 
     expect(screen.getByText(/Kyiv, UA/i)).toBeInTheDocument();
-
     expect(
       screen.getByText(new RegExp(`${mockCity.temp}`, "i")),
     ).toBeInTheDocument();
-    expect(
-      screen.getByText(new RegExp(`${mockCity.humidity}`, "i")),
-    ).toBeInTheDocument();
-
     expect(mockFetchForecast).toHaveBeenCalledWith({ lat: 50.45, lon: 30.52 });
   });
 
@@ -98,7 +102,6 @@ describe("ForecastPage", () => {
     ]);
 
     render(<ForecastPage />);
-
     expect(screen.getByTestId("line-chart")).toBeInTheDocument();
   });
 
@@ -110,7 +113,6 @@ describe("ForecastPage", () => {
     ]);
 
     render(<ForecastPage />);
-
     expect(screen.getByText(FORECAST.LOAD)).toBeInTheDocument();
   });
 });

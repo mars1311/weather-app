@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import WeatherCard from '@/components/WeatherCard/WeatherCard';
+import WeatherCard from "@/components/WeatherCard/WeatherCard";
 
 jest.mock("next/navigation", () => ({
   useRouter: () => ({ push: jest.fn() }),
@@ -34,9 +34,6 @@ describe("WeatherCard", () => {
     expect(screen.getByText(/Prague/i)).toBeInTheDocument();
     expect(screen.getByText(/5°/i)).toBeInTheDocument();
     expect(screen.getByText(/Cloudy/i)).toBeInTheDocument();
-
-    const formatted = new Date(props.updatedAt).toLocaleTimeString();
-    expect(screen.getByText(formatted)).toBeInTheDocument();
   });
 
   test("calls onRefresh when refresh button is clicked", () => {

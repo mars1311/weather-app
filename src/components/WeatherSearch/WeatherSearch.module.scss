@@ -1,12 +1,35 @@
 @import "@/styles/_variables";
 
 .weatherSearch {
-  min-width: 460px;
-  width: auto;
+  max-width: 520px;
+  width: 100%;
+  min-width: 0;
   margin-left: auto;
   margin-right: auto;
   margin-top: 24px;
   padding: 16px;
   background-color: $white;
   border-radius: 8px;
+
+  &__input {
+    flex: 1;
+    padding: 8px 16px;
+    border: 1px solid $streetGray;
+    border-radius: 8px;
+    color: $darkGrey;
+    outline: none;
+
+    &::placeholder {
+      color: $grey;
+    }
+
+    &:focus {
+      border-color: $primaryBlue;
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+    }
+
+    @media (max-width: 480px) {
+      margin-bottom: 8px;
+    }
+  }
 }
