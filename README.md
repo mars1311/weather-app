@@ -1,5 +1,7 @@
 # 🌦️ WeatherApp
+https://mars1311-weather-app-mwmz.vercel.app/
 
+---
 A modern, high-performance weather tracking application built with **Next.js**, **Redux Toolkit**, and **RTK Query**. This application allows users to monitor real-time weather data for multiple cities, visualize temperature trends via interactive charts, and manage a personalized city list.
 
 ---
